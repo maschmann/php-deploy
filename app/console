@@ -1,6 +1,7 @@
+#!/usr/bin/env php
 <?php
 /*
- * This file is part of the <package> package.
+ * This file is part of the php-deploy package.
  *
  * (c) Marc Aschmann <maschmann@gmail.com>
  *
@@ -8,8 +9,12 @@
  * file that was distributed with this source code.
  */
 
-use Acme\Console\Command\DeployCommand;
+require __DIR__ . '/../vendor/autoload.php';
+
+use Asm\PhpDeploy\Console\Command\DeployCommand;
 use Symfony\Component\Console\Application;
+
+set_time_limit(0);
 
 $application = new Application();
 $application->add(new DeployCommand);

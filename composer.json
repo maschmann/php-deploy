@@ -29,5 +29,5 @@
             "Asm\\PhpDeploy": ""
         }
     },
-    "target-dir": "Asm/PhpDeploy"
+    "target-dir": "src/Asm/PhpDeploy"
 }
