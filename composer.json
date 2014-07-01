@@ -25,9 +25,6 @@
     "require-dev": {
     },
     "autoload": {
-        "psr-0": {
-            "Asm\\PhpDeploy": ""
-        }
-    },
-    "target-dir": "src/Asm/PhpDeploy"
+        "psr-0": { "": "src/" }
+    }
 }
