@@ -29,22 +29,50 @@ class DeployCommand extends BaseCommand
     {
         $this
             ->setName('deploy:ftp')
-            ->setDescription('deploy onto a ftp server');
-
-        // server, port (opt), deployment tag(?),
-        /*
+            ->setDescription('deploy onto a ftp server')
             ->addArgument(
-                'name',
+                'project',
                 InputArgument::OPTIONAL,
-                'Who do you want to greet?'
+                'Which project do you want to deploy?'
             )
             ->addOption(
-                'yell',
-                null,
-                InputOption::VALUE_NONE,
-                'If set, the task will yell in uppercase letters'
+                'tag',
+                't',
+                InputOption::VALUE_OPTIONAL,
+                'Set a tag to deploy. If none given, one will be created for you (YmdHis)',
+                date('YmdHis')
+            )
+            ->addOption(
+                'repository',
+                'r',
+                InputOption::VALUE_OPTIONAL,
+                'Name of git repository to use'
+            )
+            ->addOption(
+                'user',
+                'u',
+                InputOption::VALUE_OPTIONAL,
+                'username for FTP'
+            )
+            ->addOption(
+                'password',
+                'p',
+                InputOption::VALUE_OPTIONAL,
+                'password for FTP'
+            )
+            ->addOption(
+                'server',
+                's',
+                InputOption::VALUE_OPTIONAL,
+                'FTP server name'
+            )
+            ->addOption(
+                'port',
+                'P',
+                InputOption::VALUE_OPTIONAL,
+                'FTP port. Defaults to 21',
+                21
             );
-        */
     }
 
     /**
