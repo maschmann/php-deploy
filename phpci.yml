@@ -12,6 +12,7 @@ setup:
 
 test:
     php_unit:
+        run_from: "."
         config:
             - "phpunit.xml.dist"
         coverage: "coverage"
