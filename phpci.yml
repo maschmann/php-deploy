@@ -11,10 +11,10 @@ setup:
         action: "install"
 
 test:
-    php_unit:
-        run_from: "."
-        config:
-            - "./phpunit.xml.dist"
+    #php_unit:
+    #    run_from: "."
+    #    config:
+    #        - "./phpunit.xml.dist"
     php_mess_detector:
         #path: "./src"
         #rules:
