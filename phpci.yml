@@ -14,8 +14,8 @@ test:
     php_unit:
         config:
             - "phpunit.xml.dist"
-        run_from: "phpunit/"
-        coverage: "tests/logs/coverage"
+        #run_from: "phpunit/"
+        #coverage: "tests/logs/coverage"
         args: "--stderr"
     php_mess_detector:
         allow_failures: true
