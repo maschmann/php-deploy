@@ -5,16 +5,8 @@ build_settings:
         - "vendor"
         - "web"
         - "Tests"
-#    mysql:
-#        host: "localhost"
-#        user: "root"
-#        pass: ""
 
 setup:
-#    mysql:
-#        - "DROP DATABASE IF EXISTS test;"
-#        - "CREATE DATABASE test;"
-#        - "GRANT ALL PRIVILEGES ON test.* TO test@'localhost' IDENTIFIED BY 'test';"
     composer:
         action: "install"
 
@@ -33,5 +25,3 @@ test:
         allow_failures: true
 
 complete:
-#    mysql:
-#        - "DROP DATABASE IF EXISTS test;"
