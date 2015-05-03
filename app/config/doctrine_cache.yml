@@ -1,0 +1,11 @@
+doctrine_cache:
+    providers:
+        default:
+            type: "%default_cache%"
+            namespace: "%default_cache_namespace%"
+        apc:
+            type: apc
+            namespace: default_cache
+        array:
+            type: array
+            namespace: default_cache

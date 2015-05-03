@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block meta %}{% endblock %}
+        {% block stylesheets %}
+        <link href="{{ asset('/assets/core.css') }}" rel="stylesheet">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block header %}
+        <header>
+            <p>I can haz header</p>
+        </header>
+        {% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}
+        <footer>
+            <p>I can haz footer</p>
+        </footer>
+        {% endblock %}
+        {% block javascripts %}
+        <script src="{{ asset('/assets/core.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

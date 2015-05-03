@@ -1,4 +1,9 @@
-php-deploy
-==========
+# php-deploy
 
-php wrapper for different deployment tools
+PHP wrapper for ansible deployments.
+This repo intends to mainly provide a nice and easy way to manage ansible deployments to different servers and by different methods.
+Ansible has become my favorite provisioning tool for most of my projects, so wrapping up the commandline stuff and maybe creating a GUI for showing the deloyment results is the next logixal step.
+
+# What does it do?
+
+Mainly there's a symfony2 application and ansible. Symfony provides the commandline tools and the gui, ansible does the hard work :-)

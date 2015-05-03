@@ -1,21 +1,19 @@
-# Bootstrap
-app/bootstrap*
+# ignore assets, keep in mind that prod/ assets will be versioned
+/web/bundles/
+/web/assets/*
 
-# Symfony directories
-vendor/*
-*/logs/*
-*/cache/*
-web/uploads/*
-web/bundles/*
+# symfony cache and logs
+/app/cache/*
+/app/logs/*
 
-# Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
+# our local node install, node modules and node logs
+/app/Resources/node/
+node_modules
+/*.log
 
-# Composer
-composer.phar
-composer.lock
+# thirdparty stuff
+/vendor/
 
-# phpstorm
-.idea
-atlassian-ide-plugin.xml
+# bin folder
+/bin/*
+!/bin/install-node

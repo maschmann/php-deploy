@@ -1,0 +1,86 @@
+server {
+    listen 80;
+    server_name sf-project-skeleton.dev.local sf-project-skeleton_dev.dev.local;
+    root /home/wwwdev/htdocs/sf-project-skeleton/web;
+    access_log /var/log/nginx/dev.local.access.log;
+    error_log /var/log/nginx/dev.local.error.log;
+
+    location = /favicon.ico {
+        log_not_found off;
+        access_log off;
+    }
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+
+    # Make sure files with the following extensions do not get loaded by nginx because nginx would display the source code, and these files can contain PASSWORDS!
+    location ~* \.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)$|^(\..*|Entries.*|Repository|Root|Tag|Template)$|\.php_ {
+        deny all;
+    }
+
+    # Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac).
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+
+    location ~*  \.(jpg|jpeg|png|gif|css|js|ico)$ {
+        expires max;
+        log_not_found off;
+    }
+
+    # strip app.php/ prefix if it is present
+    rewrite ^/app\.php/?(.*)$ /$1 permanent;
+
+    location / {
+            index app.php;
+            try_files $uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+            rewrite ^(.*)$ /app.php/$1 last;
+    }
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    location ~ ^/app\.php(/|$) {
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include                 fastcgi_params;
+        fastcgi_buffer_size 128k;
+        fastcgi_buffers 4 256k;
+        fastcgi_busy_buffers_size 256k;
+        fastcgi_param           HTTPS off;
+        fastcgi_pass            127.0.0.1:9000;
+        fastcgi_index           index.php;
+        fastcgi_read_timeout    9000;
+        fastcgi_param           SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+        fastcgi_param           APP_ENVIRONMENT dev;
+        fastcgi_param           APP_DEBUG 1;
+    }
+
+
+    location /phpmyadmin {
+        root /usr/share/;
+        index index.php index.html index.htm;
+        location ~ ^/phpmyadmin/(.+\.php)$ {
+            try_files $uri =404;
+            root /usr/share/;
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include /etc/nginx/fastcgi_params;
+        }
+
+        location ~* ^/phpmyadmin/(.+\.(jpg|jpeg|gif|css|png|js|ico|html|xml|txt))$ {
+            root /usr/share/;
+        }
+    }
+
+    location /phpMyAdmin {
+        rewrite ^/* /phpmyadmin last;
+    }
+
+}

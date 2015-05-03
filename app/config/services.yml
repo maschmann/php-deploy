@@ -1,0 +1,25 @@
+parameters:
+
+services:
+    # twig template functions #################################################
+    core.twig.mx_extension:
+        class: CoreBundle\Twig\CoreExtension
+        arguments:
+            - '@core.config'
+        tags:
+            - { name: twig.extension }
+
+    # configuration loader ####################################################
+    core.config:
+        class: Core\Config\ConfigManager
+        arguments:
+            - '@doctrine_cache.providers.default'
+            - '%kernel.environment%'
+            - '%kernel.root_dir%'
+
+    # parent service for controller-as-a-service ###############################
+    core.abstract_service_controller:
+        abstract:  true
+        arguments:
+            - '@templating'
+            - '@form.factory'
