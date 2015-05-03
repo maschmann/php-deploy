@@ -5,3 +5,8 @@ services:
     core.home_controller:
         parent: core.abstract_service_controller
         class: CoreBundle\Controller\HomeController
+
+    # current controllers #####################################################
+#    core.home_controller:
+#        parent: core.abstract_service_controller
+#        class: CoreBundle\Controller\HomeController

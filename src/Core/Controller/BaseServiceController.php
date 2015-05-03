@@ -11,6 +11,7 @@ namespace Core\Controller;
 
 use Symfony\Component\Form\FormFactory;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class BaseServiceController
@@ -42,5 +43,26 @@ abstract class BaseServiceController
     ) {
         $this->formFactory = $formFactory;
         $this->templating = $templating;
+    }
+
+    /**
+     * Renders a view. Stolen from Symfony controller
+     *
+     * @param string $view The view name or symfony/twig syntax
+     * @param array $parameters An array of parameters to pass to the view
+     * @param int $status
+     * @param array $headers
+     * @return Response A Response instance
+     */
+    public function render($view = 'index', array $parameters = [], $status = 200, array $headers = [])
+    {
+        return new Response(
+            $this->templating->render(
+                $this->getTemplatePath($view),
+                $parameters
+            ),
+            $status,
+            $headers
+        );
     }
 }
