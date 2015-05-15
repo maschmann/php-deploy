@@ -1,11 +1,53 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1acc721a9e14dcfa32606a0a753095b1",
+    "hash": "1dc14f8edf0d691a3edc85867ac0459a",
     "packages": [
+        {
+            "name": "asm/php-ansible",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maschmann/php-ansible.git",
+                "reference": "91fcf6aa4869feccf8a05925c4ef2f57b07cc8ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maschmann/php-ansible/zipball/91fcf6aa4869feccf8a05925c4ef2f57b07cc8ec",
+                "reference": "91fcf6aa4869feccf8a05925c4ef2f57b07cc8ec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/process": "~2.6.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "~1.0",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Asm\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Aschmann",
+                    "email": "maschmann@gmail.com"
+                }
+            ],
+            "description": "php wrapper for ansible commands",
+            "homepage": "https://github.com/maschmann/php-ansible",
+            "time": "2015-05-14 19:03:37"
+        },
         {
             "name": "asm/php-utilities",
             "version": "v2.0.2",
@@ -1491,16 +1533,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.6.6",
+            "version": "v2.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "48c9e835a877adfb023b8b6d033d9dd14f342b4b"
+                "reference": "0449d0e1178bc8e934520b20432d1705c3b25e7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/48c9e835a877adfb023b8b6d033d9dd14f342b4b",
-                "reference": "48c9e835a877adfb023b8b6d033d9dd14f342b4b",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/0449d0e1178bc8e934520b20432d1705c3b25e7e",
+                "reference": "0449d0e1178bc8e934520b20432d1705c3b25e7e",
                 "shasum": ""
             },
             "require": {
@@ -1604,7 +1646,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-04-01 16:55:26"
+            "time": "2015-05-11 01:58:49"
         },
         {
             "name": "twig/extensions",
@@ -1920,22 +1962,6 @@
                 "responsive",
                 "web"
             ]
-        },
-        {
-            "name": "npm-asset/requirejs",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jrburke/r.js.git",
-                "reference": "b012ab2459760d30437f0febfb7d1640fb7c6287"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jrburke/r.js/zipball/b012ab2459760d30437f0febfb7d1640fb7c6287",
-                "reference": "b012ab2459760d30437f0febfb7d1640fb7c6287",
-                "shasum": ""
-            },
-            "type": "npm-asset-library"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2731,7 +2757,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "npm-asset/requirejs": 20
+        "asm/php-ansible": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

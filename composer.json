@@ -20,12 +20,11 @@
     "incenteev/composer-parameter-handler": "~2.0",
     "asm/php-utilities": "~2.0",
     "doctrine/doctrine-cache-bundle": "~1.0",
-    "asm/php-ansible": "~2.0"
+    "asm/php-ansible": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",
     "npm-asset/bootstrap": "~3.3",
-    "npm-asset/requirejs": "dev-master",
     "bower-asset/jquery": "~2.1.0",
     "bower-asset/jquery-ui": "~1.11",
     "phpunit/phpunit": "4.4.*",

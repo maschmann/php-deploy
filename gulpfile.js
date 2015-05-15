@@ -2,7 +2,6 @@ var gulp = require('gulp'),
     //_ = require('lodash'),
     gulpLoadPlugins = require('gulp-load-plugins'),
     plugins = gulpLoadPlugins(),
-    theme = 'default',
     env = 'dev',
     minify = false;
 
@@ -13,7 +12,6 @@ if (plugins.util.env.help) {
     plugins.util.log(plugins.util.colors.cyan('--------------------------------------------------'));
     plugins.util.log('parameters:');
     plugins.util.log(plugins.util.colors.yellow('--help'), '        shows this help');
-    plugins.util.log(plugins.util.colors.yellow('--theme=<name>'), 'theme to create files for');
     plugins.util.log(plugins.util.colors.yellow('--env=<env>'), '   environment to create files for [dev]');
     plugins.util.log(plugins.util.colors.cyan('--------------------------------------------------'));
 
@@ -69,8 +67,8 @@ gulp.task('watch', ['handle-assets'], function () {
 });
 
 /** general task bundlers **/
-gulp.task('build-js', ['core-js-' + theme]);
-gulp.task('build-css', ['core-stylus-' + theme]);
+gulp.task('build-js', ['core-js-default']);
+gulp.task('build-css', ['core-stylus-default']);
 
 gulp.task('core-stylus-default', function () {
     gulp.src(files.css.core.files)
