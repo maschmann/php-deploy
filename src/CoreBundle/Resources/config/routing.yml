@@ -1,3 +1,7 @@
-core_homepage:
+core_index:
     path:     /
-    defaults: { _controller: core.home_controller:indexAction }
+    defaults: { _controller: core.page_controller:dashboardAction }
+
+core_dashboard:
+    path:     /dashboard
+    defaults: { _controller: core.page_controller:dashboardAction }

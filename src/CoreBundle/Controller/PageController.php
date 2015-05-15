@@ -8,16 +8,18 @@ use Core\Controller\BaseServiceController;
  *
  * @package CoreBundle\Controller
  */
-class HomeController extends BaseServiceController
+class PageController extends BaseServiceController
 {
     /**
      * @return mixed
      */
-    public function indexAction()
+    public function dashboardAction()
     {
         return $this->templating->renderResponse(
-            $this->getTemplatePath(),
-            array()
+            $this->getTemplatePath('dashboard'),
+            array(
+                'deployments' => [],
+            )
         );
     }
 }

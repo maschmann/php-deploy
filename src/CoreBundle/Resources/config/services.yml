@@ -1,12 +1,8 @@
 parameters:
 
-services:
+imports:
+    - { resource: 'services_core.yml' }
+    - { resource: 'services_controller.yml' }
 
-    core.home_controller:
-        parent: core.abstract_service_controller
-        class: CoreBundle\Controller\HomeController
+services: []
 
-    # current controllers #####################################################
-#    core.home_controller:
-#        parent: core.abstract_service_controller
-#        class: CoreBundle\Controller\HomeController

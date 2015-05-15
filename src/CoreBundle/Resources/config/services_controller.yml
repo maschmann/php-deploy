@@ -1,0 +1,4 @@
+services:
+    core.page_controller:
+        parent: core.abstract_service_controller
+        class: CoreBundle\Controller\PageController

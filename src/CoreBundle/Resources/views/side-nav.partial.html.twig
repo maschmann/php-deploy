@@ -1,0 +1,18 @@
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li{% if active == 'overview' %} class="active"{% endif %}>
+                        <a href="#" title="">{{ 'Overview'|trans }}
+                            {% if active == 'overview' %}<span class="sr-only">(current)</span>{% endif %}
+                        </a>
+                    </li>
+{#                    <li{% if active == 'overview' %} class="active"{% endif %}>
+                        <a href="#" title="{{ 'Reports'|trans }}">{{ 'Reports'|trans }}</a>
+                    </li>
+                    <li{% if active == 'overview' %} class="active"{% endif %}>
+                        <a href="#" title="{{ 'Analytics'|trans }}">{{ 'Analytics'|trans }}</a>
+                    </li>
+                    <li{% if active == 'overview' %} class="active"{% endif %}>
+                        <a href="#" title="{{ 'Export'|trans }}">{{ 'Export'|trans }}</a>
+                    </li>#}
+                </ul>
+            </div>

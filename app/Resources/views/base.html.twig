@@ -2,24 +2,38 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block meta %}{% endblock %}
+        <title>{% block title %}{{ 'php-deploy'|trans }}{% endblock %}</title>
+        {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        {% endblock %}
         {% block stylesheets %}
         <link href="{{ asset('/assets/core.css') }}" rel="stylesheet">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block header %}
-        <header>
-            <p>I can haz header</p>
-        </header>
-        {% endblock %}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">{{ 'php-deploy'|trans }}</a>
+                </div>
+                {% block header %}
+                {% endblock %}
+            </div>
+        </nav>
         {% block body %}{% endblock %}
         {% block footer %}
-        <footer>
-            <p>I can haz footer</p>
-        </footer>
         {% endblock %}
         {% block javascripts %}
         <script src="{{ asset('/assets/core.js') }}"></script>
