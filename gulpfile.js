@@ -21,10 +21,6 @@ if (plugins.util.env.help) {
 /**
  * check for commandline params and define defaults
  */
-if (plugins.util.env.theme && '' != plugins.util.env.theme) {
-    theme = plugins.util.env.theme;
-}
-
 if (plugins.util.env.env) {
     env = plugins.util.env.env;
 }
@@ -49,7 +45,7 @@ var files = {
                 './vendor/bower-asset/jquery-ui/jquery-ui.js',
                 './vendor/npm-asset/bootstrap/dist/js/bootstrap.js',
                 './vendor/npm-asset/requirejs/require.js',
-                './web/bundles/*/js/**/*.' + theme + '.js'
+                './web/bundles/*/js/**/*.default.js'
             ],
             name: 'core.js',
             dest: './web/assets'
