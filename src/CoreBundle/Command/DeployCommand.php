@@ -8,18 +8,22 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Core\Command\BaseCommand;
 
 /**
- * Class DefaultCommand
+ * Class DeployCommand
+ * @author Marc Aschmann <maschmann@gmail.com>
  * @package CoreBundle\Command
  */
-class DefaultCommand extends BaseCommand
+class DeployCommand extends BaseCommand
 {
     /**
      * default configure method
      */
     protected function configure()
     {
-        $this->setName('core:default:command')
-            ->setDescription('default command implementation');
+        $this->setName('core:deploy')
+            ->setDescription('Base deployment command')
+            ->addOption('host', null, InputOption::VALUE_REQUIRED, 'Host to deploy (ansible hosts)')
+            ->addOption('client', 'c', InputOption::VALUE_REQUIRED, 'Client config to use')
+            ->addOption('tag', 't', InputOption::VALUE_OPTIONAL, 'Hash, branch or tag to deploy', 'master');
     }
 
     /**
@@ -32,5 +36,8 @@ class DefaultCommand extends BaseCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $verbose = $input->getOption('verbose');
+        $host = $input->getOption('host');
+        $client = $input->getOption('client');
+        $tag = $input->getOption('tag');
     }
 }
