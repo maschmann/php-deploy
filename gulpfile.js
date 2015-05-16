@@ -1,6 +1,4 @@
 var gulp = require('gulp'),
-    //_ = require('lodash'),
-    gulpLoadPlugins = require('gulp-load-plugins'),
     gulpLoadPlugins = require('gulp-load-plugins'),
     plugins = gulpLoadPlugins({
         rename: {
@@ -58,7 +56,9 @@ var files = {
                 './vendor/bower-asset/jquery-ui/jquery-ui.js',
                 './vendor/npm-asset/bootstrap/dist/js/bootstrap.js',
                 './src/CoreBundle/Resources/public/js/holder.js',
-                './src/CoreBundle/Resources/js/*.default.js'
+                './src/CoreBundle/Resources/public/js/core.js',
+                './src/CoreBundle/Resources/public/js/plugins.js',
+                './src/CoreBundle/Resources/public/js/dashboard.js'
             ],
             name: 'core.js',
             dest: './web/assets'
@@ -72,7 +72,7 @@ gulp.task('default', ['build:assets']);
 
 gulp.task('watch', ['build:assets'], function () {
     gulp.watch(files.css.core.files, ['build:css:core']);
-    gulp.watch(files.js.bootstrap,['build:js:core']);
+    gulp.watch(files.js.core.files,['build:js:core']);
 });
 
 /** general task bundlers **/
