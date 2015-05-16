@@ -11,12 +11,45 @@ use Core\Controller\BaseServiceController;
 class PageController extends BaseServiceController
 {
     /**
-     * @return mixed
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function dashboardAction()
     {
         return $this->render(
             'dashboard',
+            []
+        );
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function settingsAction()
+    {
+        return $this->render(
+            'settings',
+            []
+        );
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function helpAction()
+    {
+        return $this->render(
+            'help',
+            []
+        );
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function profileAction()
+    {
+        return $this->render(
+            'profile',
             []
         );
     }

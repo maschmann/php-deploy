@@ -6,6 +6,20 @@ core_dashboard:
     path:     /dashboard
     defaults: { _controller: core.page_controller:dashboardAction }
 
+core_settings:
+    path:     /settings
+    defaults:
+        _controller: core.page_controller:settingsAction
+
+core_profile:
+    path:     /profile
+    defaults:
+        _controller: core.page_controller:profileAction
+
+core_help:
+    path:     /help
+    defaults:
+        _controller: core.page_controller:helpAction
 
 core_dashboard_deployments:
     path:     /dashboard-deployments/{amount}

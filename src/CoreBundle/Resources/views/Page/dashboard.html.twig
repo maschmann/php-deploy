@@ -1,9 +1,5 @@
 {% extends '::base.html.twig' %}
 
-{% block header %}
-    {{ include('CoreBundle::top-nav.partial.html.twig', {'active': 'Dashboard'}) }}
-{% endblock %}
-
 {% block body %}
             {{ include('CoreBundle::side-nav.partial.html.twig', {'active': 'overview'}) }}
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

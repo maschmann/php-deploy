@@ -15,6 +15,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+    {% block header %}
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -26,10 +27,20 @@
                     </button>
                     <a class="navbar-brand" href="#">{{ 'php-deploy'|trans }}</a>
                 </div>
-                {% block header %}
-                {% endblock %}
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ path('core_dashboard') }}" title="{{ 'Dashboard'|trans }}">{{ 'Dashboard'|trans }}</a></li>
+                        <li><a href="{{ path('core_settings') }}" title="{{ 'Settings'|trans }}">{{ 'Settings'|trans }}</a></li>
+                        <li><a href="{{ path('core_profile') }}" title="{{ 'Profile'|trans }}">{{ 'Profile'|trans }}</a></li>
+                        <li><a href="{{ path('core_help') }}" title="{{ 'Help'|trans }}">{{ 'Help'|trans }}</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
+                </div>
             </div>
         </nav>
+    {% endblock %}
         <div class="container-fluid">
             <div class="row">
                 {% block body %}{% endblock %}
