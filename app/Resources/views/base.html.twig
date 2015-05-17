@@ -30,12 +30,17 @@
                 {% if app.user and is_granted('ROLE_DEPLOYMENT_USER') %}
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li><a href="#">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a></li>
                         <li><a href="{{ path('core_dashboard') }}" title="{{ 'Dashboard'|trans }}">{{ 'Dashboard'|trans }}</a></li>
                         <li><a href="{{ path('core_settings') }}" title="{{ 'Settings'|trans }}">{{ 'Settings'|trans }}</a></li>
-                        <li><a href="{{ path('core_profile') }}" title="{{ 'Profile'|trans }}">{{ 'Profile'|trans }}</a></li>
+                        <li><a href="{{ path('fos_user_profile_show') }}" title="{{ 'Profile'|trans }}">{{ 'Profile'|trans }}</a></li>
                         <li><a href="{{ path('core_help') }}" title="{{ 'Help'|trans }}">{{ 'Help'|trans }}</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}" title="{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}" title="{{ 'layout.login'|trans({}, 'FOSUserBundle') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}" title="{{ 'layout.register'|trans({}, 'FOSUserBundle') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% endif %}
                     </ul>
                 </div>
                 {% endif %}
@@ -44,6 +49,7 @@
         {% endblock %}
         <div class="container-fluid">
             <div class="row">
+                {% block sidebar %}{% endblock %}
                 {% block body %}{% endblock %}
             </div>
         </div>

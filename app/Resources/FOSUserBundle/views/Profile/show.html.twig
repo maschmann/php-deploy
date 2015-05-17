@@ -1,0 +1,9 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_sidebar %}
+{{ include('CoreBundle::side-nav.partial.html.twig', {'active': 'profile'}) }}
+{% endblock %}
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock fos_user_content %}

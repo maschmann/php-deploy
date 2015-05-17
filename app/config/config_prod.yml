@@ -17,9 +17,21 @@ monolog:
             type:         fingers_crossed
             action_level: error
             handler:      nested
+            channels: [ '!php_deploy' ]
+        php_deploy:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested_php_deploy
+            formatter: monolog.formatter.session_request
+            channels: [ 'php_deploy' ]
         nested:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+        nested_php_deploy:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.php_deploy.log"
+            level: debug
+            formatter: monolog.formatter.session_request
         console:
             type:  console

@@ -1,31 +1,8 @@
 {% extends '::base.html.twig' %}
 
-{% block header %}
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">{{ 'Toggle navigation'|trans }}</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                <a class="navbar-brand" href="#">{{ 'php-deploy'|trans }}</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li><a href="{{ path('fos_user_security_logout') }}" title="{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
-                {% else %}
-                    <li><a href="{{ path('fos_user_security_login') }}" title="{{ 'layout.login'|trans({}, 'FOSUserBundle') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
-                    <li><a href="{{ path('fos_user_registration_register') }}" title="{{ 'layout.register'|trans({}, 'FOSUserBundle') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
-                {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
+{% block sidebar %}
+    {% block fos_user_sidebar %}{% endblock %}
 {% endblock %}
-
 {% block body %}
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         {% for type, messages in app.session.flashBag.all %}

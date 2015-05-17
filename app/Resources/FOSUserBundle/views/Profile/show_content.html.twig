@@ -1,0 +1,9 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h1 class="page-header">{{ 'Profile'|trans({}, 'messages') }}</h1>
+<div class="fos_user_user_show">
+    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+
+    <a class="btn btn-default" href="{{ path('fos_user_profile_edit') }}" role="button">{{  'edit.profile'|trans({}, 'messages') }}</a>
+</div>

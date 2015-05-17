@@ -11,11 +11,6 @@ core_settings:
     defaults:
         _controller: core.page_controller:settingsAction
 
-core_profile:
-    path:     /profile
-    defaults:
-        _controller: core.page_controller:profileAction
-
 core_help:
     path:     /help
     defaults:

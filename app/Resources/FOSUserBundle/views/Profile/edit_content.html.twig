@@ -1,0 +1,13 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+<h1 class="page-header">{{ 'Profile'|trans({}, 'messages') }}</h1>
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal">
+    {{ form_widget(form) }}
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" id="_submit" name="_submit">{{ 'profile.edit.submit'|trans }}</button>
+        </div>
+    </div>
+</form>

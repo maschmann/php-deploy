@@ -1,3 +1,13 @@
 parameters:
 
-services: []
+services:
+    monolog.formatter.session_request:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%] [%%extra.token%%] %%channel%%.%%level_name%%: %%message%%\n"
+
+    monolog.processor.session_request:
+        class: Core\Processor\SessionRequestProcessor
+        arguments:  [ '@session' ]
+        tags:
+            - { name: monolog.processor, method: processRecord }

@@ -1,0 +1,6 @@
+services:
+
+    core.deployment.event_manager:
+        class: Core\Deployment\DeploymentEventManager
+        arguments:
+            - '@monolog.logger.php_deploy'

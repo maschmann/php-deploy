@@ -16,6 +16,13 @@ monolog:
             type:   stream
             path:   "%kernel.logs_dir%/%kernel.environment%.log"
             level:  debug
+            channels: [ '!php_deploy' ]
+        php_deploy:
+            type:   stream
+            path:   "%kernel.logs_dir%/%kernel.environment%.php_deploy.log"
+            level:  debug
+            formatter: monolog.formatter.session_request
+            channels: [ 'php_deploy' ]
         console:
             type:   console
             bubble: false

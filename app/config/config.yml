@@ -85,3 +85,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# logging options
+monolog:
+    channels: ['php_deploy']
