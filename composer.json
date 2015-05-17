@@ -20,7 +20,9 @@
     "incenteev/composer-parameter-handler": "~2.0",
     "asm/php-utilities": "~2.0",
     "doctrine/doctrine-cache-bundle": "~1.0",
-    "asm/php-ansible": "dev-master"
+    "asm/php-ansible": "dev-master",
+    "friendsofsymfony/user-bundle": "~2.0@dev",
+    "doctrine/doctrine-fixtures-bundle": "~2.2"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",

@@ -3,6 +3,14 @@ parameters:
 imports:
     - { resource: 'services_core.yml' }
     - { resource: 'services_controller.yml' }
+    - { resource: 'services_eventlistener.yml' }
 
-services: []
+services:
+
+    core.admin_user_repository:
+        class: Doctrine\Common\Persistence\ObjectRepository
+        factory_service: doctrine.orm.php_deploy_entity_manager
+        factory_method:  getRepository
+        arguments:
+            - "Corebundle:AdminUserRepository"
 

@@ -1,0 +1,10 @@
+services:
+    core.user_registration:
+        class: CoreBundle\EventListener\UserEventListener
+        arguments:
+            - "@doctrine.orm.php_deploy_entity_manager"
+            - "@router"
+            - "%default_role%"
+            - "%default_redirect_page%"
+        tags:
+            - { name: kernel.event_subscriber }

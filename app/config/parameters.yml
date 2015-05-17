@@ -3,17 +3,19 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: symfony
+    database_name: php-deploy
     database_user: root
     database_password: vagrant
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
-    locale: de
+    locale: en_US
     secret: ThisTokenIsNotSoSecretChangeIt
     debug_toolbar: true
     debug_redirects: false
     use_assetic_controller: true
     default_cache: apc
-    default_cache_namespace: default_cache
+    default_cache_namespace: php-deploy_default_cache
+    default_role: ROLE_DEPLOYMENT_USER
+    default_redirect_page: core_dashboard

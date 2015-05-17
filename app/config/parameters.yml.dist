@@ -3,7 +3,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     php-deploy
     database_user:     root
     database_password: vagrant
     # You should uncomment this if you want use pdo_sqlite
@@ -14,7 +14,7 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
-    locale:            de
+    locale:            en_US
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
@@ -24,4 +24,8 @@ parameters:
     use_assetic_controller: true
 
     default_cache:           apc
-    default_cache_namespace: default_cache
+    default_cache_namespace: php-deploy_default_cache
+
+    # registration and redirects
+    default_role: ROLE_DEPLOYMENT_USER
+    default_redirect_page: core_dashboard

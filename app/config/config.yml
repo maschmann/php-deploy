@@ -3,10 +3,11 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: doctrine_cache.yml }
+    - { resource: fos_user.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -30,6 +31,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources: ['bootstrap_3_layout.html.twig']
 
 # Assetic Configuration
 assetic:
@@ -63,7 +66,17 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        default_entity_manager:  php_deploy
+        entity_managers:
+            php_deploy:
+                auto_mapping: true
+                query_cache_driver:
+                    type:                 "%default_cache%"
+                metadata_cache_driver:
+                    type:                 "%default_cache%"
+                result_cache_driver:
+                    type:                 "%default_cache%"
+                connection:           default
 
 # Swiftmailer Configuration
 swiftmailer:
