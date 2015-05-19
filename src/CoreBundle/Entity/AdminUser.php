@@ -29,15 +29,14 @@ class AdminUser extends BaseUser
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Project", mappedBy="user")
-     */
+     * @ORM\ManyToMany(targetEntity="Project", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="user_projects",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id", unique=true)}
+     *
+     * )
+     **/
     protected $projects;
-
-    /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Deployment", mappedBy="user")
-     */
-    protected $deployments;
 
     /**
      * parent constructor call
@@ -45,8 +44,6 @@ class AdminUser extends BaseUser
     public function __construct()
     {
         parent::__construct();
-
-        $this->deployments = new ArrayCollection();
         $this->projects = new ArrayCollection();
     }
 
@@ -64,21 +61,5 @@ class AdminUser extends BaseUser
     public function addProject(Project $project)
     {
         $this->projects->add($project);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getDeployments()
-    {
-        return $this->deployments;
-    }
-
-    /**
-     * @param Deployment $deployment
-     */
-    public function addDeployment(Deployment $deployment)
-    {
-        $this->deployments->add($deployment);
     }
 }

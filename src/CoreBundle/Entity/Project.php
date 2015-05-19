@@ -51,15 +51,13 @@ class Project
 
     /**
      * @var ArrayCollection
-     * @ORM\ManyToOne(targetEntity="AdminUser", inversedBy="projects")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
-     */
-    protected $user;
-
-    /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Deployment", mappedBy="project")
-     */
+     * @ORM\ManyToMany(targetEntity="Deployment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="project_deployments",
+     *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="deployment_id", referencedColumnName="id", unique=true)}
+     *
+     * )
+     **/
     protected $deployments;
 
     /**
@@ -142,22 +140,6 @@ class Project
     public function setChanged($changed)
     {
         $this->changed = $changed;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param ArrayCollection $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
     }
 
     /**

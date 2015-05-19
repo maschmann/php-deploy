@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package CoreBundle\Entity
  * @author Marc Aschmann <maschmann@gmail.com>
  * @ORM\Entity
- * @ORM\Table(name="product")
+ * @ORM\Table(name="deployment")
  */
 class Deployment
 {
@@ -45,17 +45,15 @@ class Deployment
     protected $created;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="deployments")
+     * @ORM\OneToOne(targetEntity="Project")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
-     */
+     **/
     protected $project;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToOne(targetEntity="AdminUser", inversedBy="deployments")
-     * @ORM\JoinColumn(name="deployment_id", referencedColumnName="id")
-     */
+     * @ORM\OneToOne(targetEntity="AdminUser")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
     protected $user;
 
     /**
