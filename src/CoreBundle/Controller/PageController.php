@@ -52,6 +52,58 @@ class PageController extends BaseServiceController
     }
 
     /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function projectsAction()
+    {
+        /** @var \CoreBundle\Entity\Project $projects */
+        $projects = $this->entityManager
+            ->getRepository('CoreBundle:AdminUser')
+            ->findOneBy(
+                [
+                'id' => $this->security
+                    ->getToken()
+                    ->getUser()
+                    ->getId()
+                ]
+            )
+            ->getProjects();
+
+        return $this->render(
+            'projects',
+            [
+                'projects' => $projects,
+            ]
+        );
+    }
+
+    /**
+     * @param integer $id project Id to find
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function projectAction($id)
+    {
+        $project = null;
+
+        if (false === empty($id)) {
+            $project = $this->entityManager
+                ->getRepository('CoreBundle:Project')
+                ->findOneBy(
+                    [
+                        'id' => $id,
+                    ]
+                );
+        }
+
+        return $this->render(
+            'project',
+            [
+                'project' => $project,
+            ]
+        );
+    }
+
+    /**
      * Load deployments table
      *
      * @param int $amount

@@ -11,6 +11,19 @@ core_settings:
     defaults:
         _controller: core.page_controller:settingsAction
 
+core_projects:
+    path:     /projects
+    defaults:
+        _controller: core.page_controller:projectsAction
+
+core_project:
+    path:     /project/{id}
+    defaults:
+        _controller: core.page_controller:projectAction
+    methods: [GET]
+    requirements:
+        id:  \d+
+
 core_help:
     path:     /help
     defaults:

@@ -9,9 +9,11 @@
  */
 namespace Core\Controller;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class BaseServiceController
@@ -34,15 +36,31 @@ abstract class BaseServiceController
     protected $templating;
 
     /**
+     * @var ObjectManager
+     */
+    protected $entityManager;
+
+    /**
+     * @var TokenStorageInterface
+     */
+    protected $security;
+
+    /**
      * @param EngineInterface $templating
      * @param FormFactory $formFactory
+     * @param ObjectManager $objectManager
+     * @param TokenStorageInterface $tokenStorage
      */
     public function __construct(
         EngineInterface $templating,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        ObjectManager $objectManager,
+        TokenStorageInterface $tokenStorage
     ) {
         $this->formFactory = $formFactory;
         $this->templating = $templating;
+        $this->entityManager = $objectManager;
+        $this->security = $tokenStorage;
     }
 
     /**
