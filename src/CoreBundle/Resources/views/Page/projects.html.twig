@@ -2,10 +2,13 @@
 
 {% block body %}
     {{ include('CoreBundle::side-nav.partial.html.twig', {'active': 'projects', 'projects': projects}) }}
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="asm-projects" data-link="{{ path('core_projects') }}">
         <h1 class="page-header">{{ 'Projects'|trans }}</h1>
+        <button title="{{ 'Create'|trans }}" type="button" class="btn btn-default btn-xs asm-create-btn" data-link="{{ path('core_project.form') }}" aria-label="{{ 'create'|trans }}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
         {% if projects|length > 0 %}
-        <p>project list...</p>
+        {{ include('CoreBundle:Page:projects-list.html.twig') }}
         {% else %}
             <h3{{ 'No projects yet'|trans }}</h3>
         {% endif %}
@@ -14,4 +17,9 @@
 
 {% block footer %}
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('/assets/project.js') }}"></script>
 {% endblock %}

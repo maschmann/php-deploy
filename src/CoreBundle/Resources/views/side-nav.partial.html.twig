@@ -26,15 +26,7 @@
                         <a href="{{ path('core_projects') }}" title="">{{ 'Projects'|trans }}
                             {% if active == 'projects' %}<span class="sr-only">(current)</span>{% endif %}
                         </a>
-                        {% if projects != null and projects|length > 0 %}
-                            <ul>
-                                {% for project in projects %}
-                                <li>
-                                    <a href="{{ path('core_project', {'id': project.id}) }}" title="{{ project.name|raw }}">{{ project.name|raw }}</a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
+                        {{ render(controller('core.page_controller:projectsNavAction')) }}
                     </li>
                 </ul>
             </div>

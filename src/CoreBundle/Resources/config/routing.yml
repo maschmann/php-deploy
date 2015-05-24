@@ -37,3 +37,27 @@ core_dashboard_deployments:
     methods: [GET]
     requirements:
         amount:  \d+
+
+core_project.form:
+    path: /project/form/{id}
+    defaults:
+        _controller: core.page_controller:formAction
+        id: ~
+
+core_project.create:
+    path: /project/create
+    defaults:
+        _controller: core.page_controller:createAction
+    methods: [POST]
+
+core_project.update:
+    path: /project/update
+    defaults:
+        _controller: core.page_controller:updateAction
+    methods:  [POST]
+
+core_project.delete:
+    path: /project/delete
+    defaults:
+        _controller: core.page_controller:deleteAction
+    methods: [POST]

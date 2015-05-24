@@ -38,6 +38,7 @@ var files = {
             files: [
                 './src/CoreBundle/Resources/public/css/bootstrap.css',
                 './vendor/npm-asset/bootstrap/dist/css/bootstrap-theme.css',
+                './vendor/bower-asset/jquery-ui/themes/black-tie/jquery-ui.css',
                 './src/CoreBundle/Resources/stylus/core.default.styl',
                 './src/CoreBundle/Resources/stylus/*.default.styl'
             ],
@@ -62,21 +63,47 @@ var files = {
             ],
             name: 'core.js',
             dest: './web/assets'
+        },
+        project: {
+            files: [
+                './src/CoreBundle/Resources/public/js/project.js'
+            ],
+            name: 'project.js',
+            dest: './web/assets'
+        }
+    },
+    assets: {
+        fonts: {
+            src: [
+                './vendor/npm-asset/bootstrap/fonts/*'
+            ],
+            dest: [
+                './web'
+            ]
+        },
+        jquery_ui: {
+            src: [
+                './vendor/bower-asset/jquery-ui/themes/black-tie/images/*'
+            ],
+            dest: [
+                './web/assets'
+            ]
         }
     }
 };
 
-gulp.task('build:assets', ['build:js', 'build:css']);
+gulp.task('build:assets', ['build:js', 'build:css', 'copy:bootstrap:files', 'copy:jquery:files']);
 
 gulp.task('default', ['build:assets']);
 
 gulp.task('watch', ['build:assets'], function () {
     gulp.watch(files.css.core.files, ['build:css:core']);
     gulp.watch(files.js.core.files,['build:js:core']);
+    gulp.watch(files.js.project.files,['build:js:project']);
 });
 
 /** general task bundlers **/
-gulp.task('build:js', ['build:js:core']);
+gulp.task('build:js', ['build:js:core', 'build:js:project']);
 gulp.task('build:css', ['bootstrap:compile:less', 'build:css:core']);
 
 gulp.task('build:css:core', function () {
@@ -98,6 +125,15 @@ gulp.task('build:js:core', function() {
         .pipe(gulp.dest(files.js.core.dest));
 });
 
+gulp.task('build:js:project', function() {
+    gulp.src(files.js.project.files)
+        .pipe(plugins.plumber())
+        .pipe(plugins.concat(files.js.project.name))
+        .pipe(plugins.if(minify, plugins.uglify()))
+        .pipe(plugins.sourcemaps.write('./'))
+        .pipe(gulp.dest(files.js.project.dest));
+});
+
 gulp.task('bootstrap:compile:less', function () {
     gulp.src(files.css.bootstrap.src)
         .pipe(plugins.plumber())
@@ -107,4 +143,14 @@ gulp.task('bootstrap:compile:less', function () {
             keepSpecialComments: 0
         })))
         .pipe(gulp.dest(files.css.bootstrap.dest));
+});
+
+gulp.task('copy:bootstrap:files', function() {
+    gulp.src(files.assets.fonts.src)
+        .pipe(plugins.copy(files.assets.fonts.dest, {prefix: 3}));
+});
+
+gulp.task('copy:jquery:files', function() {
+    gulp.src(files.assets.jquery_ui.src)
+        .pipe(plugins.copy(files.assets.jquery_ui.dest, {prefix: 5}));
 });

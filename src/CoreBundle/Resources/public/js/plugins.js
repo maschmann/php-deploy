@@ -64,7 +64,7 @@
     $.fn.ajaxAnimateLoad = function (options) {
         // Create some defaults, extending them with any options that were provided
         var settings = $.extend({
-            loaderImage: '/assets/img/ajax-loader.gif',
+            loaderImage: '/assets/images/ajax-loader.gif',
             loaderWidth: '32px',
             loaderHeight: '32px',
             fadeDuration: 200,

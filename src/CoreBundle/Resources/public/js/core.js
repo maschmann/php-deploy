@@ -197,12 +197,9 @@ window.log = function () {
         defaultOptions: {
             url: "",
             method: 'GET',
-            success: function () {
-            },
-            onLoad: function () {
-            },
-            onClose: function () {
-            },
+            success: function () {},
+            onLoad: function () {},
+            onClose: function () {},
             modal: true,
             selfClose: false,
             width: 680,

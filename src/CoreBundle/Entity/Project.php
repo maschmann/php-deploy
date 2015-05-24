@@ -40,6 +40,16 @@ class Project
     protected $repository;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    protected $ansiblePath;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $extraVars;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $created;
@@ -156,5 +166,37 @@ class Project
     public function addDeployment(Deployment $deployment)
     {
         $this->deployments->add($deployment);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAnsiblePath()
+    {
+        return $this->ansiblePath;
+    }
+
+    /**
+     * @param mixed $ansiblePath
+     */
+    public function setAnsiblePath($ansiblePath)
+    {
+        $this->ansiblePath = $ansiblePath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExtraVars()
+    {
+        return $this->extraVars;
+    }
+
+    /**
+     * @param mixed $extraVars
+     */
+    public function setExtraVars($extraVars)
+    {
+        $this->extraVars = $extraVars;
     }
 }

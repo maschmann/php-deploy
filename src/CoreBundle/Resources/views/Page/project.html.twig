@@ -11,3 +11,8 @@
 {% block footer %}
 
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('/assets/project.js') }}"></script>
+{% endblock %}
