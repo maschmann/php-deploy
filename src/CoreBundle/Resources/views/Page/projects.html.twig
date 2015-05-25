@@ -2,15 +2,41 @@
 
 {% block body %}
     {{ include('CoreBundle::side-nav.partial.html.twig', {'active': 'projects', 'projects': projects}) }}
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="asm-projects" data-link="{{ path('core_projects') }}">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">{{ 'Projects'|trans }}</h1>
-        <button title="{{ 'Create'|trans }}" type="button" class="btn btn-default btn-xs asm-create-btn" data-link="{{ path('core_project.form') }}" aria-label="{{ 'create'|trans }}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </button>
-        {% if projects|length > 0 %}
-        {{ include('CoreBundle:Page:projects-list.html.twig') }}
-        {% else %}
-            <h3{{ 'No projects yet'|trans }}</h3>
+        <div class="table-responsive" id="asm-projects" data-link="{{ path('core_projects') }}">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        {{ 'project.name'|trans }}
+                    </th>
+                    <th>
+                        {{ 'project.ansible_path'|trans }}
+                    </th>
+                    <th>
+                        {{ 'project.extra_vars'|trans }}
+                    </th>
+                    <th>
+                        {{ 'project.last_deploy'|trans }}
+                    </th>
+                    <th>
+                        {{ 'project.last_success'|trans }}
+                    </th>
+                    <th class="buttons">
+                        <button title="{{ 'Create'|trans }}" type="button" class="btn btn-default btn-xs asm-create-btn" data-link="{{ path('core_project.form') }}" aria-label="{{ 'create'|trans }}">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </th>
+                </tr>
+                </thead>
+                {% if projects|length > 0 %}
+                {{ include('CoreBundle:Page:projects-list.html.twig') }}
+                {% endif %}
+            </table>
+        </div>
+        {% if projects|length <= 0 %}
+        <h2>{{ 'No projects yet'|trans }}</h2>
         {% endif %}
     </div>
 {% endblock %}
