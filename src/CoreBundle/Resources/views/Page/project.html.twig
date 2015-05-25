@@ -3,12 +3,16 @@
 {% block body %}
     {{ include('CoreBundle::side-nav.partial.html.twig', {'active': 'projects'}) }}
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">{{ 'Project'|trans }}</h1>
-        <p>{{ project.name|raw }} ({{ project.id }})</p>
-        <ul>
-            <li>{{ 'project.repo' }}: {{ project.repository }}</li>
-            <li>{{ 'project.ansible_path' }}: {{ project.ansiblePath }}</li>
-            <li>{{ 'project.extra_vars' }}: {{ project.extraVars }}</li>
+        <h2>{{ project.name|raw }} ({{ project.id }})</h2>
+        <ul class="list-group">
+            <li class="list-group-item">{{ 'project.ansible_path'|trans }}: {{ project.ansiblePath }}</li>
+            <li class="list-group-item">{{ 'project.extra_vars'|trans }}: {{ project.extraVars }}</li>
+            <li class="list-group-item">
+                Last deployment <span class="badge">42</span>
+            </li>
+            <li class="list-group-item">
+                Last successfull deployment <span class="badge">14</span>
+            </li>
         </ul>
         <div class="btn-group btn-group-xs">
             <button title="{{ 'Edit'|trans }}" type="button" class="btn btn-default btn-xs asm-edit-btn" data-link="{{ path('core_project.form', {'id': project.id}) }}" aria-label="{{ 'edit'|trans }}">
@@ -18,6 +22,9 @@
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
         </div>
+        <button type="button" class="btn btn-danger btn-md active">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;{{ 'project.deploy'|trans }}
+        </button>
     </div>
 {% endblock %}
 

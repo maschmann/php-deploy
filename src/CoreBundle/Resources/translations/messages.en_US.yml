@@ -11,4 +11,21 @@ Help: Help
 Profile: Profile
 Settings: Settings
 Overview: Overview
-edit.profile: 'Edit'
+edit.profile: Edit
+successfully_created_updated_entry: 'Successfully created/updated entry'
+Edit: 'Edit'
+edit: 'edit'
+Delete: 'Delete'
+delete: 'delete'
+Projects: 'Projects'
+project.name: 'Project name'
+project.ansible_path: 'Ansible path'
+project.extra_vars: 'Extra vars'
+project.last_deploy: 'Last deploy'
+project.last_success: 'Last successfull'
+Create: 'Create'
+create: 'create'
+'No projects yet': 'No projects yet'
+'Toggle navigation': 'Toggle navigation'
+php-deploy: 'php-deploy'
+project.deploy: 'Deploy'
