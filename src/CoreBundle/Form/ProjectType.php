@@ -25,7 +25,7 @@ class ProjectType extends AbstractType
             ->add('name', 'text', array('required' => true))
             ->add('repository', 'text', array('required' => true))
             ->add('ansiblePath', 'text', array('required' => true))
-            ->add('extraVars', 'text')
+            ->add('extraVars', 'text', array('required' => false))
             ->add('save', 'submit');
     }
 

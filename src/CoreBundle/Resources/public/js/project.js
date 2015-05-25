@@ -33,7 +33,7 @@
                         asm.project.reloadList();
                     },
                     success: function () {
-                        $('#asm_project_form').ajaxForm();
+                        $('#project-form').ajaxForm();
                     }
                 });
             });
@@ -50,7 +50,7 @@
                         asm.project.reloadList();
                     },
                     success: function () {
-                        $('#asm_project_form').ajaxForm();
+                        $('#project-form').ajaxForm();
                     }
                 });
             });

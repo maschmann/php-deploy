@@ -100,7 +100,8 @@ class PageController extends BaseServiceController
     {
         $project = null;
 
-        if (false === empty($id)) {
+        if (null !== $id) {
+            /** @var \Corebundle\Entity\Project $project */
             $project = $this->entityManager
                 ->getRepository('CoreBundle:Project')
                 ->findOneBy(
@@ -140,13 +141,13 @@ class PageController extends BaseServiceController
      */
     public function formAction($id)
     {
-        $action = 'core_project.form';
-
         if (null !== $id) {
+            $action = 'core_project.update';
             $project = $this->entityManager
                 ->getRepository('CoreBundle:Project')
                 ->findOneById($id);
         } else {
+            $action = 'core_project.create';
             $project = new Project();
         }
 
@@ -243,36 +244,44 @@ class PageController extends BaseServiceController
     private function handleForm($type, $request)
     {
         $error = null;
-        $form = $this->formFactory->create('asm_translation', new Translation(), array());
+        $form = $this->formFactory->create('asm_project_form', new Project(), array());
         $form->handleRequest($request);
+        /** @var \CoreBundle\Entity\AdminUser $user */
+        $user = $this->entityManager
+            ->getRepository('CoreBundle:AdminUser')
+            ->findOneById(
+                $this->security->getToken()->getUser()->getId()
+            );
 
         if ($form->isValid()) {
-            $manager = $this->translationManager;
-
             if ('update' == $type) {
-                /** @var \Asm\TranslationLoaderBundle\Entity\Translation $update */
+                /** @var \CoreBundle\Entity\Project $update */
                 $update = $form->getData();
-                // get translation from database again to keep date_created
-                $translation = $manager->findTranslationBy(
-                    array(
-                        'transKey' => $update->getTransKey(),
-                        'transLocale' => $update->getTransLocale(),
-                        'messageDomain' => $update->getMessageDomain(),
-                    )
-                );
+                /** @var \CoreBundle\Entity\Project $project */
+                $project = $this->entityManager
+                    ->getRepository('CoreBundle:Project')
+                    ->findOneById($update->getId());
 
-                $translation
-                    ->setTransKey($update->getTransKey())
-                    ->setTransLocale($update->getTransLocale())
-                    ->setMessageDomain($update->getMessageDomain())
-                    ->setTranslation($update->getTranslation());
+                $project
+                    ->setName($update->getName())
+                    ->setRepository($update->getRepository())
+                    ->setAnsiblePath($update->getAnsiblePath())
+                    ->setExtraVars($update->getExtraVars())
+                    ->setChanged();
 
-                $manager->updateTranslation($translation);
+                $user->addProject($project);
+
+                $this->entityManager->persist($user);
+                $this->entityManager->flush();
+                $this->entityManager->clear();
             } else {
-                $translation = $form->getData();
-                $translation->setDateCreated(new \DateTime());
+                $project = $form->getData();
                 try {
-                    $manager->updateTranslation($translation);
+                    $user->addProject($project);
+
+                    $this->entityManager->persist($user);
+                    $this->entityManager->flush();
+                    $this->entityManager->clear();
                     $error = '';
                 } catch (\Exception $e) {
                     $error = $e->getMessage();

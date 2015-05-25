@@ -30,7 +30,7 @@ class Project
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     protected $name;
 
@@ -45,7 +45,7 @@ class Project
     protected $ansiblePath;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $extraVars;
 
@@ -98,10 +98,13 @@ class Project
 
     /**
      * @param mixed $name
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -114,10 +117,13 @@ class Project
 
     /**
      * @param mixed $repository
+     * @return $this
      */
     public function setRepository($repository)
     {
         $this->repository = $repository;
+
+        return $this;
     }
 
     /**
@@ -126,14 +132,6 @@ class Project
     public function getCreated()
     {
         return $this->created;
-    }
-
-    /**
-     * @param mixed $created
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
     }
 
     /**
@@ -146,10 +144,16 @@ class Project
 
     /**
      * @param mixed $changed
+     * @return $this
      */
-    public function setChanged($changed)
+    public function setChanged(\DateTime $changed = null)
     {
+        if (null == $changed) {
+            $changed = new \Datetime();
+        }
         $this->changed = $changed;
+
+        return $this;
     }
 
     /**
@@ -162,10 +166,13 @@ class Project
 
     /**
      * @param Deployment $deployment
+     * @return $this
      */
     public function addDeployment(Deployment $deployment)
     {
         $this->deployments->add($deployment);
+
+        return $this;
     }
 
     /**
@@ -178,10 +185,13 @@ class Project
 
     /**
      * @param mixed $ansiblePath
+     * @return $this
      */
     public function setAnsiblePath($ansiblePath)
     {
         $this->ansiblePath = $ansiblePath;
+
+        return $this;
     }
 
     /**
@@ -194,9 +204,12 @@ class Project
 
     /**
      * @param mixed $extraVars
+     * @return $this
      */
     public function setExtraVars($extraVars)
     {
         $this->extraVars = $extraVars;
+
+        return $this;
     }
 }
