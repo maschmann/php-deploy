@@ -11,7 +11,7 @@
             <button title="{{ 'Delete'|trans }}" type="button" class="btn btn-default btn-xs asm-delete-btn"  data-link="{{ path('core_project.delete') }}" data-id="{{ project.id }}" aria-label="{{ 'delete'|trans }}">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
-            <button type="button" class="btn btn-danger btn-xs active">
+            <button type="button" class="btn btn-danger btn-xs active asm-deploy-btn" data-link="{{ path('core_project.deploy', {'id': project.id}) }}">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;{{ 'project.deploy'|trans }}
             </button>
         </div>

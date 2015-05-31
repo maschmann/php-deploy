@@ -9,6 +9,7 @@
  */
 namespace Core\Controller;
 
+use Core\Ansible\AnsibleServiceInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -46,21 +47,37 @@ abstract class BaseServiceController
     protected $security;
 
     /**
+     * @var AnsibleServiceInterface
+     */
+    protected $ansible;
+
+    /**
+     * @var string
+     */
+    protected $ansibleRoot;
+
+    /**
      * @param EngineInterface $templating
      * @param FormFactory $formFactory
      * @param ObjectManager $objectManager
      * @param TokenStorageInterface $tokenStorage
+     * @param AnsibleServiceInterface $ansible
+     * @param string $ansibleRoot
      */
     public function __construct(
         EngineInterface $templating,
         FormFactory $formFactory,
         ObjectManager $objectManager,
-        TokenStorageInterface $tokenStorage
+        TokenStorageInterface $tokenStorage,
+        AnsibleServiceInterface $ansible,
+        $ansibleRoot
     ) {
         $this->formFactory = $formFactory;
         $this->templating = $templating;
         $this->entityManager = $objectManager;
         $this->security = $tokenStorage;
+        $this->ansible = $ansible;
+        $this->ansibleRoot = $ansibleRoot;
     }
 
     /**

@@ -20,6 +20,10 @@
             if ($('.asm-create-btn').length > 0) {
                 asm.project.initAddButton();
             }
+
+            if ($('.asm-deploy-btn').length > 0) {
+                asm.project.initDeployButton();
+            }
         },
 
         initEditButtons: function () {
@@ -51,6 +55,22 @@
                     },
                     success: function () {
                         $('#project-form').ajaxForm();
+                    }
+                });
+            });
+        },
+
+        initDeployButton: function () {
+            $('.asm-deploy-btn').click(function (e) {
+                var deployUrl = $(this).data('link');
+                asm.modal.init({
+                    url: deployUrl,
+                    width: 550,
+                    resizable: true,
+                    onClose: function () {
+                        asm.project.reloadList();
+                    },
+                    success: function () {
                     }
                 });
             });

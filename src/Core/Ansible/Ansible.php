@@ -17,7 +17,7 @@ use Asm\Ansible\Ansible as AnsibleBase;
  * @package Core\Ansible
  * @author Marc Aschmann <maschmann@gmail.com>
  */
-class Ansible
+final class Ansible implements AnsibleServiceInterface
 {
     /**
      * @var string

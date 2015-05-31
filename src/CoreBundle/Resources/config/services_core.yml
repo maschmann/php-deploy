@@ -15,15 +15,6 @@ services:
             - '%kernel.environment%'
             - '%kernel.root_dir%'
 
-    # parent service for controller-as-a-service ##############################
-    core.abstract_service_controller:
-        abstract:  true
-        arguments:
-            - '@templating'
-            - '@form.factory'
-            - '@doctrine.orm.php_deploy_entity_manager'
-            - '@security.token_storage'
-
     # forms ###################################################################
     core.project_form:
         class: CoreBundle\Form\ProjectType

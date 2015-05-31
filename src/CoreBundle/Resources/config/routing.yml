@@ -61,3 +61,10 @@ core_project.delete:
     defaults:
         _controller: core.page_controller:deleteAction
     methods: [POST]
+
+core_project.deploy:
+    path: /project/deploy/{id}
+    defaults:
+        _controller: core.page_controller:deployAction
+    requirements:
+        id: \d+

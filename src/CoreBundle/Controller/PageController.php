@@ -217,6 +217,34 @@ class PageController extends BaseServiceController
         );
     }
 
+    public function deployAction($id)
+    {
+        /** @var \CoreBundle\Entity\Project $project */
+        $project = $this->entityManager
+            ->getRepository('CoreBundle:Project')
+            ->findOneById($id);
+
+        if (!empty($project)) {
+
+            if (0 !== strpos($project->getPlaybook(), '/')) {
+                $playbookPath = $this->ansibleRoot . '/' . $project->getPlaybook();
+            } else {
+                $playbookPath = $this->ansibleRoot;
+            }
+
+            $this->ansible
+                ->playbook($playbookPath)
+                ->inventoryFile($project->getInventory())
+                ->execute();
+
+        }
+
+        return $this->render(
+            'deploy',
+            []
+        );
+    }
+
     /**
      * @param integer $limit
      * @return \Doctrine\Common\Collections\ArrayCollection

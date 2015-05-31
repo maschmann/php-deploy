@@ -1,4 +1,15 @@
 services:
+    # parent service for controller-as-a-service ##############################
+    core.abstract_service_controller:
+        abstract:  true
+        arguments:
+            - '@templating'
+            - '@form.factory'
+            - '@doctrine.orm.php_deploy_entity_manager'
+            - '@security.token_storage'
+            - '@core.ansible'
+            - '%ansible_project_root%'
+
     core.page_controller:
         parent: core.abstract_service_controller
         class: CoreBundle\Controller\PageController
