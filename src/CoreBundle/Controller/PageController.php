@@ -158,6 +158,7 @@ class PageController extends BaseServiceController
             [
                 'form' => $form->createView(),
                 'action' => $action,
+                'id' => $id,
             ]
         );
     }
@@ -246,6 +247,7 @@ class PageController extends BaseServiceController
         $error = null;
         $form = $this->formFactory->create('asm_project_form', new Project(), array());
         $form->handleRequest($request);
+        $id = $request->request->get('id');
         /** @var \CoreBundle\Entity\AdminUser $user */
         $user = $this->entityManager
             ->getRepository('CoreBundle:AdminUser')
@@ -260,20 +262,40 @@ class PageController extends BaseServiceController
                 /** @var \CoreBundle\Entity\Project $project */
                 $project = $this->entityManager
                     ->getRepository('CoreBundle:Project')
-                    ->findOneById($update->getId());
+                    ->findOneById($id);
 
-                $project
-                    ->setName($update->getName())
-                    ->setRepository($update->getRepository())
-                    ->setAnsiblePath($update->getAnsiblePath())
-                    ->setExtraVars($update->getExtraVars())
-                    ->setChanged();
+                if (!empty($project)) {
+                    $project
+                        ->setName($update->getName())
+                        ->setPlaybook($update->getPlaybook())
+                        ->setInventory($update->getInventory())
+                        ->setExtraVars($update->getExtraVars())
+                        ->setVerbose($update->getVerbose())
+                        ->setCheck($update->getCheck())
+                        ->setLimit($update->getLimit())
+                        ->setUsername($update->getUsername())
+                        ->setPassword($update->getPassword())
+                        ->setPrivateKeyFile($update->getPrivateKeyFile())
+                        ->setVaultPassword($update->getVaultPassword())
+                        ->setVaultPasswordFile($update->getVaultPasswordFile())
+                        ->setSuPassword($update->getSuPassword())
+                        ->setConnection($update->getConnection())
+                        ->setForceHandlers($update->getForceHandlers())
+                        ->setModulePath($update->getModulePath())
+                        ->setSkipPaths($update->getSkipPaths())
+                        ->setStartAtTask($update->getStartAtTask())
+                        ->setSu($update->getSu())
+                        ->setSuUser($update->getSuUser())
+                        ->setTags($update->getTags())
+                        ->setTimeout($update->getTimeout())
+                        ->setChanged();
 
-                $user->addProject($project);
-
-                $this->entityManager->persist($user);
-                $this->entityManager->flush();
-                $this->entityManager->clear();
+                    $this->entityManager->persist($project);
+                    $this->entityManager->flush();
+                    $this->entityManager->clear();
+                } else {
+                    $error = 'Project ' . $id . ' not found';
+                }
             } else {
                 $project = $form->getData();
                 try {

@@ -19,3 +19,5 @@ parameters:
     default_cache_namespace: php-deploy_default_cache
     default_role: ROLE_DEPLOYMENT_USER
     default_redirect_page: core_dashboard
+    ansible_playbook_command: ~
+    ansible_galaxy_command: ~

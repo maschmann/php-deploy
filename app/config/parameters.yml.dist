@@ -29,3 +29,7 @@ parameters:
     # registration and redirects
     default_role: ROLE_DEPLOYMENT_USER
     default_redirect_page: core_dashboard
+
+    # ansible
+    ansible_playbook_command: ~
+    ansible_galaxy_command: ~

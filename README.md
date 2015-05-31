@@ -22,4 +22,27 @@ $ app/console doctrine:database:create
 ```
 $ app/console doctrine:schema:update --force
 ```
+### get your ansible deployments into place
 
+Your deployments go here:
+```
+php-deploy
+  |
+  |- app
+  |
+  |- deployment
+  |    |
+  |    |- <your deployment here>
+  |    |    |- roles
+  |    |    |- playbook.yml
+  |    |    |- inventory
+  |
+  |- src
+  |- web
+```
+
+### some things you need to consider
+
+ * if your deployment is key-based, your php (or webserver) user needs to have it in its ssh folder
+ * all actions will be done with the webserver user until we've implemented cronjob-based deployments
+  

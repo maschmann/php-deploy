@@ -23,9 +23,27 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name', 'text', array('required' => true))
-            ->add('repository', 'text', array('required' => true))
-            ->add('ansiblePath', 'text', array('required' => true))
-            ->add('extraVars', 'text', array('required' => false))
+            ->add('playbook', 'text', array('required' => true))
+            ->add('inventory', 'text', array('required' => true))
+            ->add('verbose', 'checkbox', array('required' => false))
+            ->add('check', 'checkbox', array('required' => false))
+            ->add('limit', 'text', array('required' => false))
+            ->add('username', 'text', array('required' => false))
+            ->add('password', 'text', array('required' => false))
+            ->add('privateKeyFile', 'text', array('required' => false))
+            ->add('vaultPassword', 'text', array('required' => false))
+            ->add('vaultPasswordFile', 'text', array('required' => false))
+            ->add('suPassword', 'text', array('required' => false))
+            ->add('connection', 'text', array('required' => false))
+            ->add('forceHandlers', 'checkbox', array('required' => false))
+            ->add('modulePath', 'text', array('required' => false))
+            ->add('skipPaths', 'text', array('required' => false))
+            ->add('startAtTask', 'text', array('required' => false))
+            ->add('su', 'text', array('required' => false))
+            ->add('suUser', 'text', array('required' => false))
+            ->add('sudoUser', 'text', array('required' => false))
+            ->add('tags', 'text', array('required' => false))
+            ->add('timeout', 'text', array('required' => false))
             ->add('save', 'submit');
     }
 

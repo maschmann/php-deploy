@@ -29,3 +29,10 @@ services:
         class: CoreBundle\Form\ProjectType
         tags:
             - { name: form.type, alias: asm_project_form }
+
+    # ansible #################################################################
+    core.ansible:
+        class: Core\Ansible\Ansible
+        arguments:
+            - '%ansible_playbook_command%'
+            - '%ansible_galaxy_command%'

@@ -2,10 +2,10 @@
 {% for project in projects %}
     <tr>
         <td>{{ project.name|raw }}</td>
-        <td>{{ project.ansiblePath|raw }}</td>
-        <td>{{ project.extraVars|raw }}</td>
-        <td>last deployment</td>
-        <td>last successfull depl</td>
+        <td>{{ project.playbook|raw }}</td>
+        <td>{{ project.inventory|raw }}</td>
+        <td>{{ 'last.deployment' }}</td>
+        <td>{{ 'last successfull depl' }}</td>
         <td>
             <div class="btn-group btn-group-xs">
                 <button title="{{ 'Edit'|trans }}" type="button" class="btn btn-default btn-xs asm-edit-btn" data-link="{{ path('core_project.form', {'id': project.id}) }}" aria-label="{{ 'edit'|trans }}">

@@ -1,4 +1,5 @@
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 <form action="{{ path(action) }}" {{ form_enctype(form) }} method="POST" class="form-horizontal" id="project-form">
     {{ form_widget(form) }}
+    <input type="hidden" name="id" value="{{ id }}">
 </form>
