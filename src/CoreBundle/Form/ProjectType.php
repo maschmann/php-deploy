@@ -23,6 +23,7 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name', 'text', array('required' => true))
+            ->add('basePath', 'text', array('required' => true))
             ->add('playbook', 'text', array('required' => true))
             ->add('inventory', 'text', array('required' => true))
             ->add('verbose', 'checkbox', array('required' => false))

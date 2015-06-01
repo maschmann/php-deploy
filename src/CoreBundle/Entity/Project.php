@@ -38,6 +38,12 @@ class Project
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    protected $basePath;
+
+    /**
+     * @var string
      * @ORM\Column(type="text", nullable=false)
      */
     protected $playbook;
@@ -212,7 +218,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -220,7 +226,26 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
+     */
+    public function getBasePath()
+    {
+        return $this->basePath;
+    }
+
+    /**
+     * @param string $basePath
+     * @return $this
+     */
+    public function setBasePath($basePath)
+    {
+        $this->basePath = $basePath;
+
+        return $this;
+    }
+
+    /**
+     * @return string
      */
     public function getName()
     {
@@ -228,7 +253,7 @@ class Project
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      * @return $this
      */
     public function setName($name)
@@ -247,7 +272,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getChanged()
     {
@@ -255,7 +280,7 @@ class Project
     }
 
     /**
-     * @param mixed $changed
+     * @param \DateTime $changed
      * @return $this
      */
     public function setChanged(\DateTime $changed = null)
@@ -288,7 +313,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPlaybook()
     {
@@ -296,7 +321,7 @@ class Project
     }
 
     /**
-     * @param mixed $playbook
+     * @param string $playbook
      * @return $this
      */
     public function setPlaybook($playbook)
@@ -307,7 +332,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getExtraVars()
     {
@@ -315,7 +340,7 @@ class Project
     }
 
     /**
-     * @param mixed $extraVars
+     * @param string $extraVars
      * @return $this
      */
     public function setExtraVars($extraVars)
@@ -326,7 +351,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getInventory()
     {
@@ -345,7 +370,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPassword()
     {
@@ -353,7 +378,7 @@ class Project
     }
 
     /**
-     * @param mixed $password
+     * @param string $password
      * @return $this
      */
     public function setPassword($password)
@@ -364,7 +389,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSuPassword()
     {
@@ -372,7 +397,7 @@ class Project
     }
 
     /**
-     * @param mixed $suPassword
+     * @param string $suPassword
      * @return $this
      */
     public function setSuPassword($suPassword)
@@ -383,7 +408,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getVaultPassword()
     {
@@ -391,7 +416,7 @@ class Project
     }
 
     /**
-     * @param mixed $vaultPassword
+     * @param string $vaultPassword
      * @return $this
      */
     public function setVaultPassword($vaultPassword)
@@ -402,15 +427,15 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
-    public function getCheck()
+    public function isCheck()
     {
         return $this->check;
     }
 
     /**
-     * @param mixed $check
+     * @param boolean $check
      * @return $this
      */
     public function setCheck($check)
@@ -421,7 +446,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getConnection()
     {
@@ -429,7 +454,7 @@ class Project
     }
 
     /**
-     * @param mixed $connection
+     * @param string $connection
      * @return $this
      */
     public function setConnection($connection)
@@ -442,7 +467,7 @@ class Project
     /**
      * @return boolean
      */
-    public function getForceHandlers()
+    public function hasForceHandlers()
     {
         return $this->forceHandlers;
     }
@@ -459,7 +484,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getLimit()
     {
@@ -467,7 +492,7 @@ class Project
     }
 
     /**
-     * @param mixed $limit
+     * @param integer $limit
      * @return $this
      */
     public function setLimit($limit)
@@ -478,7 +503,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getModulePath()
     {
@@ -486,7 +511,7 @@ class Project
     }
 
     /**
-     * @param mixed $modulePath
+     * @param string $modulePath
      * @return $this
      */
     public function setModulePath($modulePath)
@@ -497,7 +522,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPrivateKeyFile()
     {
@@ -505,7 +530,7 @@ class Project
     }
 
     /**
-     * @param mixed $privateKeyFile
+     * @param string $privateKeyFile
      * @return $this
      */
     public function setPrivateKeyFile($privateKeyFile)
@@ -516,7 +541,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSkipPaths()
     {
@@ -524,7 +549,7 @@ class Project
     }
 
     /**
-     * @param mixed $skipPaths
+     * @param string $skipPaths
      * @return $this
      */
     public function setSkipPaths($skipPaths)
@@ -535,7 +560,7 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getStartAtTask()
     {
@@ -543,7 +568,7 @@ class Project
     }
 
     /**
-     * @param mixed $startAtTask
+     * @param string $startAtTask
      * @return $this
      */
     public function setStartAtTask($startAtTask)
@@ -592,15 +617,15 @@ class Project
     }
 
     /**
-     * @return string
+     * @return integer
      */
-    public function getSudo()
+    public function isSudo()
     {
         return $this->sudo;
     }
 
     /**
-     * @param string $sudo
+     * @param integer $sudo
      * @return $this
      */
     public function setSudo($sudo)
@@ -708,7 +733,7 @@ class Project
     /**
      * @return boolean
      */
-    public function getVerbose()
+    public function isVerbose()
     {
         return $this->verbose;
     }

@@ -14,6 +14,7 @@ use CoreBundle\Entity\Project;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Process\Process;
 
 /**
  * Class HomeController
@@ -225,17 +226,26 @@ class PageController extends BaseServiceController
             ->findOneById($id);
 
         if (!empty($project)) {
-
-            if (0 !== strpos($project->getPlaybook(), '/')) {
-                $playbookPath = $this->ansibleRoot . '/' . $project->getPlaybook();
-            } else {
+            // basic check if path relative
+            if (0 !== strpos($project->getBasePath(), '/')) {
+                $playbookPath = $this->ansibleRoot . '/' . $project->getBasePath();
+            } else { //otherwise use the absolute path
                 $playbookPath = $this->ansibleRoot;
             }
 
             $this->ansible
                 ->playbook($playbookPath)
+                ->play($project->getPlaybook())
                 ->inventoryFile($project->getInventory())
-                ->execute();
+                ->connection('local')
+                ->sudo()
+                ->execute(function ($type, $buffer) {
+                    if (Process::ERR === $type) {
+                        echo 'ERR > '.$buffer;
+                    } else {
+                        echo 'OUT > '.$buffer;
+                    }
+                });
 
         }
 
@@ -295,11 +305,12 @@ class PageController extends BaseServiceController
                 if (!empty($project)) {
                     $project
                         ->setName($update->getName())
+                        ->setBasePath($update->getBasePath())
                         ->setPlaybook($update->getPlaybook())
                         ->setInventory($update->getInventory())
                         ->setExtraVars($update->getExtraVars())
-                        ->setVerbose($update->getVerbose())
-                        ->setCheck($update->getCheck())
+                        ->setVerbose($update->isVerbose())
+                        ->setCheck($update->isCheck())
                         ->setLimit($update->getLimit())
                         ->setUsername($update->getUsername())
                         ->setPassword($update->getPassword())
@@ -308,7 +319,7 @@ class PageController extends BaseServiceController
                         ->setVaultPasswordFile($update->getVaultPasswordFile())
                         ->setSuPassword($update->getSuPassword())
                         ->setConnection($update->getConnection())
-                        ->setForceHandlers($update->getForceHandlers())
+                        ->setForceHandlers($update->hasForceHandlers())
                         ->setModulePath($update->getModulePath())
                         ->setSkipPaths($update->getSkipPaths())
                         ->setStartAtTask($update->getStartAtTask())

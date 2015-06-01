@@ -2,7 +2,7 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-symfony2
+    - servergrove.symfony2
 
   vars:
     symfony2_project_root: /tmp/test_app

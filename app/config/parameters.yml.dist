@@ -31,6 +31,6 @@ parameters:
     default_redirect_page: core_dashboard
 
     # ansible
-    ansible_playbook_command: ~
-    ansible_galaxy_command: ~
+    ansible_playbook_command: /usr/local/bin/ansible-playbook
+    ansible_galaxy_command: /usr/local/bin/ansible-galaxy
     ansible_project_root: "%kernel.root_dir%/../deployment"

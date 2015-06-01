@@ -19,6 +19,6 @@ parameters:
     default_cache_namespace: php-deploy_default_cache
     default_role: ROLE_DEPLOYMENT_USER
     default_redirect_page: core_dashboard
-    ansible_playbook_command: ~
-    ansible_galaxy_command: ~
-    ansible_project_root: "%kernel.root_dir%/../deployment"
+    ansible_playbook_command: /usr/local/bin/ansible-playbook
+    ansible_galaxy_command: /usr/local/bin/ansible-galaxy
+    ansible_project_root: '%kernel.root_dir%/../deployment'
